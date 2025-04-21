@@ -3,6 +3,7 @@ package handler
 import (
 	"net/http"
 
+	"github.com/FLXA-Auth-Service-IOTA/controllers"
 	"github.com/FLXA-Auth-Service-IOTA/initializers"
 	"github.com/gin-gonic/gin"
 )
@@ -28,15 +29,15 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		})
 	})
 
-	rGin.POST("/register")
-	rGin.POST("/login")
-	rGin.POST("/generate-secret")
-	rGin.GET("/verify-otp")
-	rGin.GET("/check-session")
-	rGin.GET("/logout")
-	rGin.PATCH("/complete-profile")
-	rGin.GET("/resend-otp")
-	rGin.POST("/logout-all")
+	rGin.POST("/register", controllers.Register)
+	rGin.POST("/login", controllers.Login)
+	rGin.POST("/generate-secret", controllers.GenerateSecretString)
+	rGin.GET("/verify-otp", controllers.VerifyOTP)
+	rGin.GET("/check-session", controllers.CheckSession)
+	rGin.GET("/logout", controllers.Logout)
+	rGin.PATCH("/complete-profile", controllers.CompleteProfile)
+	rGin.GET("/resend-otp", controllers.ResendOTP)
+	rGin.POST("/logout-all", controllers.LogoutAll)
 
 	rGin.ServeHTTP(w, r)
 }
