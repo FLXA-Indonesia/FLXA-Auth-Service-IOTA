@@ -76,7 +76,7 @@ The service exposes the RESTful API endpoints accessible at `/api`
 Note: Authentication and authorization mechanisms should be implemented to secure these endpoints.
 
 ## Contributing
-We welcome contributions to enhance the FLXA User Service. To contribute:
+We welcome contributions. To contribute:
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
 3. Commit your changes with clear messages.
