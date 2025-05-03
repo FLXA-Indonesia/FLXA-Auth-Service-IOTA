@@ -14,10 +14,7 @@ func ConnectDB() {
 	var err error
 	dsn := os.Getenv("DB_CONN_STRING")
 
-	// Ensure sslmode=require is in the connection string
-	dsn += " sslmode=require"
-
-	DB, err = gorm.Open(postgres.Open(dsn))
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		log.Fatal("Connection to db failed ", err.Error())
