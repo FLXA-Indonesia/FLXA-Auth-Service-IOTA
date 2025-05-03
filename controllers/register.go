@@ -128,6 +128,17 @@ func Register(c *gin.Context) {
 		return
 	}
 
+	tokenBalanceTransactionErr := tx.Exec("INSERT INTO \"Token_balance\" (user_id) VALUES ($1)", newUser.UserID).Error
+	message, code, details = utilities.TransactionErrorHandler(tokenBalanceTransactionErr)
+	if code != 0 {
+		c.JSON(code, map[string]interface{}{
+			"message": message,
+			"details": details,
+		})
+		tx.Rollback()
+		return
+	}
+
 	otpCode, _ := generateRandomString(6, Numeric)
 	ctx := context.Background()
 	sessionID := "otp_code:" + newCard.CardPhoneNumber
